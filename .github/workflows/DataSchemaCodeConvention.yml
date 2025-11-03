@@ -1,0 +1,24 @@
+name: Data Schema Code Convention Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  json-linter:
+    name: Check JSON Schema Code Convention
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Install jsonlint
+        run: npm i -g @prantlf/jsonlint
+      
+      - name: Validate DataSchema.json
+        run: jsonlint $GITHUB_WORKSPACE/DataSchema.json
