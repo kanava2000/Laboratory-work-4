@@ -1,0 +1,29 @@
+name: Program Code Convention Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  javascript-linter:
+    name: Check JavaScript Code Convention
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install Biome
+        run: npm install -g @biomejs/biome
+      
+      - name: Run Biome linter on ProgramCode.js
+        run: biome lint $GITHUB_WORKSPACE/ProgramCode.js
