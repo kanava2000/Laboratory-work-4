@@ -26,4 +26,4 @@ jobs:
         run: npm install -g @biomejs/biome
       
       - name: Run Biome linter on ProgramCode.js
-        run: biome lint $GITHUB_WORKSPACE/ProgramCodeModified.js
+        run: biome lint $GITHUB_WORKSPACE/ProgramCode.js
